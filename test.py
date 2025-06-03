@@ -1,3 +1,10 @@
+#                         _+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_     REDACTED    TO    VERSION    |||   1.0.5   |||   _+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
+#                                                                                         { F I X E D }
+#                                                                  -1-       If you gonna get >1 aces -> it sums to   *has_11*
+#                                                                  -2-       Did a      ~ This title list~  (ig it would be good)
+#                                                                  -3-       Fortnite balls im gay i like boys i kidnap autistic kidz lil mozy is watchin T-rex
+#                                                     [][][][][][][][][][][][][]  -  Be greateful, Ludomaniac   -  [][][][][][][][][][][][][][][][]
+
 from time import sleep
 from random import choice
 #              _______________________________________________ ФУНКЦИИ _____________________________________________________
@@ -11,30 +18,30 @@ def take_a_card(player):
     givepoints = choice(stuck)
     stuck.remove(givepoints)
     if givepoints == 11:
-        has_11 = True
-    if givepoints == 11 and player >= 11:
         print(write_text_beatifully(f'Вы достали карту номинала {givepoints} или 1'))
-        has_11 = False
+        has_11 += 1
+    if givepoints == 11 and player >= 11:
+        has_11 -= 1
         return 1  
-    else:
+    elif givepoints != 11:
         print(write_text_beatifully(f'Вы достали карту номинала {givepoints}'))
-        if has_11 == True and player >= 11:
-            has_11 = False
+        if has_11 > 0 and player+givepoints > 21:
+            has_11 -= 1
             return -10 + givepoints
         else:
             return givepoints
 def check_valid(givepoints, player):
     global has_11
     if givepoints == 11:
-        has_11 = True
-    if givepoints == 11 and player >= 11:
         print(write_text_beatifully(f'Вы достали карту номинала {givepoints} или 1'))
-        has_11 = False
+        has_11 += 1
+    if givepoints == 11 and player >= 11:
+        has_11-=1
         return 1  
-    else:
+    elif givepoints != 11:
         print(write_text_beatifully(f'Вы достали карту номинала {givepoints}'))
-        if has_11 == True and player+givepoints >= 21:
-            has_11 = False
+        if has_11 > 0 and player+givepoints >= 21:
+            has_11 -= 1
             return -10 + givepoints
         else:
             return givepoints
@@ -57,7 +64,7 @@ def end_the_game(player, dealer):
         print(write_text_beatifully('Ничья.'))
 #              ____________________________________________ ВСЕ ВАЖНЫЕ КОЛОДЫ ______________________________________________
 stuck = [2,3,4,5,6,7,8,9,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,11,2,3,4,5,6,7,8,9,10,10,10,11]
-has_11 = False
+has_11 = int(0)
 #              _____________________________________________________________________________________________________________
 
 print(write_text_beatifully('Происходит раздача карт...'))
@@ -71,10 +78,10 @@ for y in range(2):
     if givepoints != 11:
         tosmbpoints += givepoints
     else:
-        has_11 = True
+        has_11 += 1
         if players_points >= 11:
             tosmbpoints+=1
-            has_11=False
+            has_11-=1
         else:
             tosmbpoints+=givepoints
     if y == 0:
@@ -107,4 +114,5 @@ while True:
                 continue
     else:
         print(write_text_beatifully(f'У вас {players_points} очков. Вы проиграли.'))
+        breakы проиграли.'))
         break
